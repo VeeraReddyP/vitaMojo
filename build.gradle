@@ -19,15 +19,20 @@ dependencies {
     implementation 'org.seleniumhq.selenium:selenium-java:4.3.0'
     implementation 'io.rest-assured:rest-assured:5.1.1'
     implementation 'org.json:json:20220320'
-
-
-
-
-
-
-
 }
 
-test {
-    useJUnitPlatform()
+configurations {
+    cucumberRuntime {
+        extendsFrom testImplementation
+    }
+}
+
+task cucumber() {
+    doLast {
+        javaexec {
+            main = "io.cucumber.core.cli.Main"
+            classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+            args = ['--plugin', 'pretty', '--glue', 'com.vitaMojo.step', 'src/test/']
+        }
+    }
 }

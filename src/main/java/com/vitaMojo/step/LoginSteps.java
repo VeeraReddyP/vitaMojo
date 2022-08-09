@@ -9,7 +9,7 @@ import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.json.JSONObject;
-import org.junit.Assert;
+import org.testng.Assert;
 
 import java.util.HashMap;
 import java.util.List;
@@ -63,6 +63,7 @@ public class LoginSteps {
 
     @Then("User should able to see the {int} success")
     public void verifySuccessRsp(int status) {
+
         Assert.assertTrue(rsp.getStatusCode()==status);
     }
 

@@ -10,7 +10,7 @@ import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.json.JSONObject;
-import org.junit.Assert;
+import org.testng.Assert;
 
 import java.util.HashMap;
 import java.util.List;
@@ -70,6 +70,7 @@ public class SignUpSteps {
 
     @Then("User should able to see the {int} success registration")
     public void verifySuccessRsp(int status) {
+
         Assert.assertTrue(rsp.getStatusCode()==status);
     }
 

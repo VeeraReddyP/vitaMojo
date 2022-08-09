@@ -13,26 +13,13 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
     implementation 'io.cucumber:cucumber-java:7.5.0'
-    implementation 'io.cucumber:cucumber-junit:7.5.0'
+    testImplementation 'io.cucumber:cucumber-junit:7.5.0'
     implementation 'io.cucumber:cucumber-core:7.5.0'
     implementation 'io.github.bonigarcia:webdrivermanager:5.2.3'
     implementation 'org.seleniumhq.selenium:selenium-java:4.3.0'
     implementation 'io.rest-assured:rest-assured:5.1.1'
     implementation 'org.json:json:20220320'
+    implementation 'org.testng:testng:7.6.1'
+
 }
 
-configurations {
-    cucumberRuntime {
-        extendsFrom testImplementation
-    }
-}
-
-task cucumber() {
-    doLast {
-        javaexec {
-            main = "io.cucumber.core.cli.Main"
-            classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
-            args = ['--plugin', 'pretty', '--glue', 'com.vitaMojo.step', 'src/test/']
-        }
-    }
-}
